@@ -13,7 +13,7 @@ library(maptools)
 ###############################################################################
 # Caricamento dei vettoriali e dei layer di utilita'
 
-setwd("/home/redlav/procedure/")
+setwd("/home/XXXXX/procedure/")
 
 
 redlav_point_weather=readRDS("vectors/redlav_point_weather.rds")
@@ -25,7 +25,7 @@ npoints=667
 ###############################################################################
 # definizione del nome e path dello stack netcdf delle previsioni 
 
-file_meteo=paste0("/home/salute/data/output/spool/redlav_forecast_full.nc");
+file_meteo=paste0("/home/XXXXX/data/output/spool/redlav_forecast_full.nc");
 
 ##############################################################################
 
@@ -70,8 +70,8 @@ list_meteo_full=list(tmax=as.data.frame(tmax),
                      urel=as.data.frame(urel),
                      prec=as.data.frame(prec))
                      
-saveRDS(list_meteo_full,"/home/redlav/procedure/simulation/list_meteo_last.rds")
-saveRDS(list_meteo_full,paste0("/home/redlav/procedure/simulation/list_meteo_",Sys.Date(),".rds"))
+saveRDS(list_meteo_full,"/home/XXXXX/procedure/simulation/list_meteo_last.rds")
+saveRDS(list_meteo_full,paste0("/home/XXXXX/procedure/simulation/list_meteo_",Sys.Date(),".rds"))
 
 ##############################################################################
 
