@@ -1,4 +1,10 @@
 <?php
+
+/*
+	Author: Ing. Mirko Mancin, Giugno 2015
+		mirko.mancin@gmail.com
+*/
+
 ini_set("display_errors", 1);
 require_once ("../lib/php/util.php");
 header('Content-type: application/json');
