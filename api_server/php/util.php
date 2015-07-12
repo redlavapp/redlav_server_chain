@@ -1,7 +1,7 @@
 <?php
 require_once ("config.php");
 require_once ("mysql_to_json.class.php");
-
+// Author Mirko Mancin: 
 /* server timezone */
 
 define('CONST_SERVER_TIMEZONE', 'UTC');
@@ -23,7 +23,7 @@ class M2MConnect {
 	function addNewDevice($rawData) {
 		$json = json_decode($rawData, true);
 		/*
-		{"mac":"013949004392026","longitude":"44.10","latitude":"10.10","accuracy":"10","type":"GSM","location":"1",
+		{"mac":"XXXXX","longitude":"44.10","latitude":"10.10","accuracy":"10","type":"GSM","location":"1",
 		 "sensors":[
 						{"name":"temp","datatype":"DOUBLE","rangeMin":"-20","rangeMax":"80","units":"C","type":"termometria"},
 						{"name":"hum","datatype":"INTEGER","rangeMin":"0","rangeMax":"100","units":"rH","type":"igrometria"}
@@ -93,19 +93,18 @@ class M2MConnect {
 		$sense = explode(',',$array[1]);
 					
 		$Key = $sense[0];
-		//if($Key == "ZNZ2015AAA"){}
-		
-		if($ID == "013949004392026" || 
-			$ID == "013949001711061" || 
-			$ID == "013949004379122" || 
-			$ID == "013949001846081" || 
-			$ID == "013777007119199" || 
-			$ID == "013949002522947"){
-			    //013777007119199:123456789ABCDE,23.20,57.90,11.87,5.16,22.82,506,248,0,0,0,{24.8,999:25.8,999:26.0,999:26.0,999:23.5,999:23.0,999:22.9,999:23.7,999:24.0,999:24.3,999:23.8,999:23.3,999$3.7}
-				//$sense = explode(',',$array[1]);
+	
+		if($ID == "XXXXX" || 
+			$ID == "XXXXX" || 
+			$ID == "" || 
+			$ID == "" || 
+			$ID == "" || 
+			$ID == ""){
+			  
+			  	//$sense = explode(',',$array[1]);
 				
 				$convFactor = 0.0275;
-				if($Key != "ZNZ2015102")
+				if($Key != "XXXXX")
 					$convFactor *= 2;
 				
 		    	//$Key = $sense[0];
@@ -124,11 +123,9 @@ class M2MConnect {
 				$rawJSON = "{\"mac\":\"". $ID ."\",\"Key\":\"". $Key ."\",\"temp\":\"". $temp ."\",\"hum\":\"". $hum ."\",\"volt\":\"". $volt ."\",\"lipo\":\"". $voltLiPo ."\",\"waterTemp\":\"". $waterTemp ."\",\"lux\":\"". $solar1 ."\",\"rpm\":\"". $RPMTops ."\",\"RPMLast\":\"". $RPMLast ."\",\"pp\":\"". $pp ."\",\"ppLast\":\"". $ppLast ."\"}";
 		}
 		/*	
-		else if($ID == "013949001711061"){
-			    //013949001711061:123456789ABCDE,24.20,58.20,223,71,225,0,23.39,0,0,0,0,null
-				//$sense = explode(',',$array[1]);
+		else if($ID == "XXXXX"){
 					
-		    	//$Key = $sense[0];
+		           	//$Key = $sense[0];
 				$temp = $sense[1];
 				$hum = $sense[2];
 				$volt = $sense[3];
@@ -143,11 +140,9 @@ class M2MConnect {
 					
 				$rawJSON = "{\"mac\":\"". $ID ."\",\"Key\":\"". $Key ."\",\"temp\":\"". $temp ."\",\"hum\":\"". $hum ."\",\"volt\":\"". $volt ."\",\"lipo\":\"". $voltLiPo ."\",\"soilTemp\":\"". $soilTemp ."\",\"lux\":\"". $solar1 ."\",\"rpm\":\"". $RPMTops ."\",\"RPMLast\":\"". $RPMLast ."\",\"pp\":\"". $pp ."\",\"ppLast\":\"". $ppLast ."\"}";
 		}	
-		else if($ID == "013949004392026"){
-				//013949004392026:123456789ABCDE,24.30,61.60,233,73,0,0,23.34,0,0,0,0,null
-				//$sense = explode(',',$array[1]);
+		else if($ID == "XXXXX"){
 					
-		    	//$Key = $sense[0];
+		      	//$Key = $sense[0];
 				$temp = $sense[1];
 				$hum = $sense[2];
 				$volt = $sense[3];
