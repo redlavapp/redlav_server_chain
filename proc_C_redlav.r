@@ -12,7 +12,7 @@ library(gdalUtils)
 
 ##########################################################################à
 
-setwd("/home/redlav/procedure")
+setwd("/home/XXXXX/procedure")
 
 source("code/aux_images.r")
 
@@ -89,8 +89,8 @@ eggs_raster<- focal(eggs_raster_i, w=matrix(1/9,nrow=3,ncol=3),na.rm=T)
 # Create tileserver output
 
 
-writeRaster(adulti_raster,"/home/salute/data/output/redlav/data/adulti_raster_full.tif",overwrite=T)
-writeRaster(eggs_raster,"/home/salute/data/output/redlav/data/eggs_raster_full.tif",overwrite=T)
+writeRaster(adulti_raster,"/home/XXXXX/data/output/redlav/data/adulti_raster_full.tif",overwrite=T)
+writeRaster(eggs_raster,"/home/XXXXX/data/output/redlav/data/eggs_raster_full.tif",overwrite=T)
 
 ################################################################
 # Crop to reliable extent
@@ -103,25 +103,25 @@ eggs_raster <- crop(eggs_raster, e)
 
 
 
-create_trasparent_legend(adulti_raster,"/home/salute/data/output/redlav/images/legend_adu.png",pal=redlav_cols)
-create_trasparent_legend(eggs_raster,"/home/salute/data/output/redlav/images/legend_eggs.png",pal=redlav_cols)
+create_trasparent_legend(adulti_raster,"/home/XXXXX/data/output/redlav/images/legend_adu.png",pal=redlav_cols)
+create_trasparent_legend(eggs_raster,"/home/XXXXX/data/output/redlav/images/legend_eggs.png",pal=redlav_cols)
 
 
 writePaletteVRT("eggs_raster.vrt", eggs_raster,redlav_cols)
 writePaletteVRT("adulti_raster.vrt", adulti_raster,redlav_cols)
 
-writeRaster(adulti_raster,"/home/salute/data/output/redlav/data/adulti_raster.tif",overwrite=T,datatype="INT1U")
-writeRaster(eggs_raster,"/home/salute/data/output/redlav/data/eggs_raster.tif",overwrite=T,datatype="INT1U")
+writeRaster(adulti_raster,"/home/XXXXX/data/output/redlav/data/adulti_raster.tif",overwrite=T,datatype="INT1U")
+writeRaster(eggs_raster,"/home/XXXXX/data/output/redlav/data/eggs_raster.tif",overwrite=T,datatype="INT1U")
 
-system("python code/addPalette.py eggs_raster.vrt /home/salute/data/output/redlav/data/eggs_raster.tif")
-system("python code/addPalette.py adulti_raster.vrt /home/salute/data/output/redlav/data/adulti_raster.tif")
+system("python code/addPalette.py eggs_raster.vrt /home/XXXXX/data/output/redlav/data/eggs_raster.tif")
+system("python code/addPalette.py adulti_raster.vrt /home/XXXXX/data/output/redlav/data/adulti_raster.tif")
 
-system("gdal_translate -of vrt -expand rgba /home/salute/data/output/redlav/data/eggs_raster.tif eggstemp.vrt")
-system("gdal_translate -of vrt -expand rgba /home/salute/data/output/redlav/data/adulti_raster.tif adutemp.vrt")
+system("gdal_translate -of vrt -expand rgba /home/XXXXX/data/output/redlav/data/eggs_raster.tif eggstemp.vrt")
+system("gdal_translate -of vrt -expand rgba /home/XXXXX/data/output/redlav/data/adulti_raster.tif adutemp.vrt")
 
 
-system("rm -rf /home/salute/data/output/redlav/images/eggs_raster")
-system("rm -rf /home/salute/data/output/redlav/images/adu_raster")
+system("rm -rf /home/XXXXX/data/output/redlav/images/eggs_raster")
+system("rm -rf /home/XXXXX/data/output/redlav/images/adu_raster")
  
 system("python /code/gdal2tiles-multiprocess.py -s EPSG:4326 -p mercator --srcnodata=0,0,0  -z \'9-16\'  adutemp.vrt /home/salute/data/output/redlav/images/adu_raster")
 system("python /code/gdal2tiles-multiprocess.py -s EPSG:4326 -p mercator --srcnodata=0,0,0  -z \'9-16\'  adutemp.vrt /home/salute/data/output/redlav/images/adu_raster")
