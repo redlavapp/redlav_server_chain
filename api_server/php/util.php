@@ -1,7 +1,9 @@
 <?php
 require_once ("config.php");
 require_once ("mysql_to_json.class.php");
-// Author Mirko Mancin: 
+
+// Author Mirko Mancin: mirko.mancin@gmail.com
+
 /* server timezone */
 
 define('CONST_SERVER_TIMEZONE', 'UTC');
@@ -22,15 +24,7 @@ class M2MConnect {
 
 	function addNewDevice($rawData) {
 		$json = json_decode($rawData, true);
-		/*
-		{"mac":"XXXXX","longitude":"44.10","latitude":"10.10","accuracy":"10","type":"GSM","location":"1",
-		 "sensors":[
-						{"name":"temp","datatype":"DOUBLE","rangeMin":"-20","rangeMax":"80","units":"C","type":"termometria"},
-						{"name":"hum","datatype":"INTEGER","rangeMin":"0","rangeMax":"100","units":"rH","type":"igrometria"}
-						{"name":"temp","datatype":"DOUBLE","rangeMin":"-20","rangeMax":"80","units":"C","type":"thermoglobe"}
-					]}
 		
-		 */
 		$mac = $json['mac']; 
 		$longitude = $json['longitude']; 
 		$latitude = $json['latitude']; 
@@ -96,22 +90,12 @@ class M2MConnect {
 	
 		if($ID == "XXXXX" || 
 			$ID == "XXXXX" || 
-			$ID == "" || 
-			$ID == "" || 
-			$ID == "" || 
 			$ID == ""){
-			  
-			  	//$sense = explode(',',$array[1]);
 				
-				$convFactor = 0.0275;
-				if($Key != "XXXXX")
-					$convFactor *= 2;
-				
-		    	//$Key = $sense[0];
 				$temp = $sense[1];
 				$hum = $sense[2];
-				$volt = $sense[3] * $convFactor;
-				$voltLiPo = $sense[4] * $convFactor;
+				$volt = $sense[3];
+				$voltLiPo = $sense[4;
 				$solar1 = $sense[5];
 				$solar2 = $sense[6];
 				$waterTemp = $sense[7];
@@ -122,42 +106,7 @@ class M2MConnect {
 					
 				$rawJSON = "{\"mac\":\"". $ID ."\",\"Key\":\"". $Key ."\",\"temp\":\"". $temp ."\",\"hum\":\"". $hum ."\",\"volt\":\"". $volt ."\",\"lipo\":\"". $voltLiPo ."\",\"waterTemp\":\"". $waterTemp ."\",\"lux\":\"". $solar1 ."\",\"rpm\":\"". $RPMTops ."\",\"RPMLast\":\"". $RPMLast ."\",\"pp\":\"". $pp ."\",\"ppLast\":\"". $ppLast ."\"}";
 		}
-		/*	
-		else if($ID == "XXXXX"){
-					
-		           	//$Key = $sense[0];
-				$temp = $sense[1];
-				$hum = $sense[2];
-				$volt = $sense[3];
-				$voltLiPo = $sense[4];
-				$solar1 = $sense[5];
-				$solar2 = $sense[6];
-				$soilTemp = $sense[7];
-				$RPMTops = $sense[8];			
-				$RPMLast = $sense[9];
-				$pp = $sense[10];
-				$ppLast = $sense[11];	
-					
-				$rawJSON = "{\"mac\":\"". $ID ."\",\"Key\":\"". $Key ."\",\"temp\":\"". $temp ."\",\"hum\":\"". $hum ."\",\"volt\":\"". $volt ."\",\"lipo\":\"". $voltLiPo ."\",\"soilTemp\":\"". $soilTemp ."\",\"lux\":\"". $solar1 ."\",\"rpm\":\"". $RPMTops ."\",\"RPMLast\":\"". $RPMLast ."\",\"pp\":\"". $pp ."\",\"ppLast\":\"". $ppLast ."\"}";
-		}	
-		else if($ID == "XXXXX"){
-					
-		      	//$Key = $sense[0];
-				$temp = $sense[1];
-				$hum = $sense[2];
-				$volt = $sense[3];
-				$voltLiPo = $sense[4];
-				$solar1 = $sense[5];
-				$solar2 = $sense[6];
-				$soilTemp = $sense[7];
-				$RPMTops = $sense[8];			
-				$RPMLast = $sense[9];
-				$pp = $sense[10];
-				$ppLast = $sense[11];	
-					
-				$rawJSON = "{\"mac\":\"". $ID ."\",\"Key\":\"". $Key ."\",\"temp\":\"". $temp ."\",\"hum\":\"". $hum ."\",\"volt\":\"". $volt ."\",\"lipo\":\"". $voltLiPo ."\",\"soilTemp\":\"". $soilTemp ."\",\"lux\":\"". $solar1 ."\",\"rpm\":\"". $RPMTops ."\",\"RPMLast\":\"". $RPMLast ."\",\"pp\":\"". $pp ."\",\"ppLast\":\"". $ppLast ."\"}";
-		}
-		*/
+		
 		else{
 			return "";
 		}
