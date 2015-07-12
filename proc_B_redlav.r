@@ -9,7 +9,7 @@ library(maptools)
 library(rAedesSim)
 
 
-setwd("/home/redlav/procedure")
+setwd("/home/XXXXX/procedure")
 
 ###########################################################################################
 # Meteo & Geo
